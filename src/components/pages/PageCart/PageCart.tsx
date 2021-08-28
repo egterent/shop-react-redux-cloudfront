@@ -13,7 +13,7 @@ import PaperLayout from "components/PaperLayout/PaperLayout";
 import {Formik, Form, FormikProps, FormikValues, FastField} from "formik";
 import Grid from "@material-ui/core/Grid";
 import {TextField} from 'formik-material-ui';
-import axios from "axios";
+import axios from 'axios';
 import API_PATHS from "constants/apiPaths";
 import {AddressSchema, OrderSchema} from "models/Order";
 
@@ -115,7 +115,7 @@ export default function PageCart() {
     setActiveStep(activeStep + 1);
     if (activeStep === 2) {
       const formattedValues = OrderSchema.cast({
-        items: cartItems.map(i => ({productId: i.product.id, count: i.count})),
+        items: cartItems.map(i => ({productId: i.product.isbn, count: i.count})),
         address
       });
       axios.put(`${API_PATHS.order}/order`, formattedValues)
