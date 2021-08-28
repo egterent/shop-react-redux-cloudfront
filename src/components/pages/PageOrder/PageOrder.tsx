@@ -115,13 +115,13 @@ export default function PageOrder() {
       return;
     }
     const promises: any[] = [
-      axios.get(`${API_PATHS.product}/product`),
+      axios.get(`${API_PATHS.product}/products`),
       axios.get(`${API_PATHS.order}/order/${id}`)
     ];
     Promise.all(promises)
       .then(([{data: products}, {data: order}]) => {
         const cartItems: CartItem[] = order.items.map((i: OrderItem) => ({
-          product: products.find((p: Product) => p.id === i.productId),
+          product: products.find((p: Product) => p.isbn === i.productId),
           count: i.count
         }));
         setOrder(order);
