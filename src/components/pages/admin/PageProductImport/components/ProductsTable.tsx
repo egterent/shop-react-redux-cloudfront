@@ -16,14 +16,14 @@ export default function ProductsTable() {
   const [products, setProducts] = useState<any>([]);
 
   useEffect(() => {
-    axios.get(`${API_PATHS.bff}/product`)
+    axios.get(`${API_PATHS.bff}/products`)
       .then(res => setProducts(res.data));
   }, []);
 
   const onDelete = (id: string) => {
-    axios.delete(`${API_PATHS.bff}/product/${id}`)
+    axios.delete(`${API_PATHS.bff}/products/${id}`)
       .then(() => {
-        axios.get(`${API_PATHS.bff}/product`)
+        axios.get(`${API_PATHS.bff}/products`)
           .then(res => setProducts(res.data));
         }
       );
@@ -36,7 +36,10 @@ export default function ProductsTable() {
         <TableHead>
           <TableRow>
             <TableCell>Title</TableCell>
+            <TableCell align="right">Author</TableCell>           
             <TableCell align="right">Description</TableCell>
+            <TableCell align="right">Publisher</TableCell>
+            <TableCell align="right">Year</TableCell>
             <TableCell align="right">Price</TableCell>
             <TableCell align="right">Count</TableCell>
             <TableCell align="right">Action</TableCell>
@@ -48,7 +51,10 @@ export default function ProductsTable() {
               <TableCell component="th" scope="row">
                 {product.title}
               </TableCell>
+              <TableCell align="right">{product.author}</TableCell>
               <TableCell align="right">{product.description}</TableCell>
+              <TableCell align="right">{product.publisher}</TableCell>
+              <TableCell align="right">{product.year}</TableCell>
               <TableCell align="right">{formatAsPrice(product.price)}</TableCell>
               <TableCell align="right">{product.count}</TableCell>
               <TableCell align="right">
