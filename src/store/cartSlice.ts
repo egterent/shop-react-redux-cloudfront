@@ -28,7 +28,7 @@ export const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<Product>) => {
       const {items} = state;
       const {payload: product} = action;
-      const existingItem = items.find(i => i.product.isbn === product.isbn);
+      const existingItem = items.find(i => i.product.id === product.id);
       if (existingItem) {
         existingItem.count++;
         return;
@@ -39,13 +39,13 @@ export const cartSlice = createSlice({
     removeFromCart: (state, action: PayloadAction<Product>) => {
       let {items} = state;
       const {payload: product} = action;
-      const existingItem = items.find(i => i.product.isbn === product.isbn);
+      const existingItem = items.find(i => i.product.id === product.id);
       if (!existingItem) return;
       if (existingItem.count > 1) {
         existingItem.count--;
         return;
       }
-      state.items = items.filter(i => i.product.isbn !== product.isbn);
+      state.items = items.filter(i => i.product.id !== product.id);
     },
     clearCart: (state) => {
       state.items = [];

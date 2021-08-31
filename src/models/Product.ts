@@ -2,7 +2,7 @@ import { buildQueries } from '@testing-library/react';
 import * as Yup from 'yup';
 
 export type Product = {
-  isbn: string,
+  id: string,
   title: string,
   author: string,
   publisher: string,
@@ -13,7 +13,7 @@ export type Product = {
 };
 
 export const ProductSchema = Yup.object().shape({
-  isbn: Yup.string().required(),
+  id: Yup.string().required(),
   title: Yup.string().required(),
   author: Yup.string().required(),
   publisher:  Yup.string().required(),
